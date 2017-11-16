@@ -1,0 +1,27 @@
+{
+  "manifest_version" : 2,
+
+  "name" : "CAI PTO Tracker",
+  "description" : "Remaining PTO Days",
+  "version" : "1.0",
+
+  "browser_action" : {
+    "default_icon" : "icon.png",
+    "default_popup" : "popup.html"
+  },
+
+//  "options" : "options.html",
+
+  "content_scripts" : [
+    {
+      "matches" : ["https://ssresources2.coxenterprises.com/psc/cehprodeapp2/EMPLOYEE/*"],
+      "js" : ["pto_tracker_cs.js"]
+    }
+  ],
+
+  "permissions" : [
+    "storage",
+    "https://ssresources2.coxenterprises.com/psc/cehprodeapp2/EMPLOYEE/*"
+  ]
+
+}

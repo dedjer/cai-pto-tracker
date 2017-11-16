@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cox Automotive PTO Tracker</title>
+    <script src="jquery-3.2.1.js"></script>
+    <script src="popup.js"></script>
+</head>
+<body style="width:400px;height:400px">
+    <img src="CA-RGB-Inline_2C-LtBg.jpg" width="300px"><br/>
+    <h3>PTO Tracker</h3>
+    <div id="instructions">
+        <u>INSTRUCTIONS</u><br/><br/>
+
+        Step 1) Go to <a href="https://appsproxy.coxenterprises.com/sso/eapps/eTL1" target="_blank">PeopleSoft Time Reporting</a><br/>
+        Step 2) Log in with your Cox Automotive Employee ID and Password<br/>
+        Step 3) Expand "Leave and Compensatory Time Balances" Section<br/>
+        Step 4) Click this PTO Chrome Extension in your browser to see remaining PTO days<br/>
+    </div>
+    <br/>
+
+    <div>PTO Days come are for 2017 from <a href="https://fuel.coxautoinc.com/docs/DOC-77380" target="_blank">Fuel</a></div><br/>
+
+    <div>PTO Days Per Year: <select id="ptoDaysSelection" autofocus>
+                                                    <option id="pto24" selected value="24">24 PTO days for 0-4 years</option>
+                                                    <option id="pto27" value="27">27 PTO days for 6-9 years</option>
+                                                    <option id="pto30" value="30">30 PTO days for 10-19 years</option>
+                                                    <option id="pto33" value="33">33 PTO days for 20+ years</option>
+                                                </select><br/>
+
+    </div>
+    <br/>
+
+    <div>PTO Remaining Hours: <label id="lblPTORemainingHours">0</label></div><br/>
+    <div>PTO Remaining Days: <label id="lblPTORemainingDays" style="color:black">0</label></div>
+</body>
+</html>
