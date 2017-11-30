@@ -2,11 +2,41 @@ $(function(){
 
     // Recalculate if dropdown value changes
     $('#ptoDaysSelection').change(function() {
-        calculatePTO()
+        calculatePTO();
+        getPTODaysBadge();
     });
 
+    getAnniversaryDate();
     calculatePTO();
+    getPTODaysBadge();
 });
+
+
+function getAnniversaryDate() {
+    chrome.storage.sync.get('anniversaryDate', function(items) {
+        if(items.anniversaryDate) {
+            var currentDate = new Date();
+            var anniversaryDate = new Date(items.anniversaryDate);
+            var yearsOfService = parseInt(currentDate.getFullYear() - anniversaryDate.getFullYear());
+
+            //Default dropdown using anniversary date
+            switch(true) {
+                case (yearsOfService >= 0 && yearsOfService <= 5):
+                    $('#ptoDaysSelection').val("24").change();
+                    break;
+                case (yearsOfService >= 6 && yearsOfService <= 9):
+                    $('#ptoDaysSelection').val("27").change();
+                    break;
+                case (yearsOfService >= 10 && yearsOfService <= 19):
+                    $('#ptoDaysSelection').val("30").change();
+                    break;
+                case (yearsOfService >= 20):
+                    $('#ptoDaysSelection').val("33").change();
+                    break;
+            }
+        }
+    });
+}
 
 function calculatePTO() {
 
@@ -47,6 +77,8 @@ function calculatePTO() {
             //noinspection JSJQueryEfficiency
             $('#lblPTORemainingDays').text(ptoRemainingDays);
 
+            chrome.storage.sync.set({'ptoRemainingDays': ptoRemainingDays});
+
             /* Logging
             console.log('ptoDaysPerYear: ' + ptoDaysPerYear);
             console.log('ptoDaysEarnedPerMonth: ' + ptoDaysEarnedPerMonth);
@@ -76,6 +108,14 @@ function calculatePTO() {
 
 }
 
+function getPTODaysBadge(){
+    chrome.storage.sync.get('badge', function(items) {
+        if(items.badge){
+            chrome.browserAction.setBadgeText({"text" : $('#lblPTORemainingDays').text()});
+        }
+    });
+
+}
 
 
 
