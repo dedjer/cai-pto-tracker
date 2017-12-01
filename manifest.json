@@ -3,14 +3,12 @@
 
   "name" : "CAI PTO Tracker",
   "description" : "Remaining PTO Days",
-  "version" : "1.02",
+  "version" : "1.03",
 
   "browser_action" : {
     "default_icon" : "iconPTO.png",
     "default_popup" : "popup.html"
   },
-
-//  "options" : "options.html",
 
   "content_scripts" : [
     {
